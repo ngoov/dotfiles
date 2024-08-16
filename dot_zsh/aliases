@@ -1,0 +1,26 @@
+# list directory contents
+alias ls='eza --icons=always --color=always'
+alias la='eza --color=always --long --icons=always --octal-permissions'
+alias lah='eza --color=always --long --icons=always --octal-permissions --all'
+
+# commands
+alias cls='clear'
+
+# quick cd up
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
+
+# apps
+alias pn="pnpm"
+alias py="python3"
+alias d="docker"
+alias k="kubectl"
+alias co="concurrently"
+alias cls="clear"
+alias lb="liquibase"
+
+# Shorter nvim
+# alias vi=nvim
+# alias vim=nvim
