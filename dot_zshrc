@@ -121,18 +121,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 zstyle ':autocomplete:*' fzf-completion yes
 
 # Aliases
-alias ls='eza --color=always --icons=always'
-alias la='eza --color=always --long --icons=always --octal-permissions'
-alias cls='clear'
-
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
-alias -g ......='../../../../..'
-
-# Shorter nvim
-# alias vi=nvim
-# alias vim=nvim
+source ".zsh/aliases"
 
 # Shell integrations
 eval "$(zoxide init --cmd cd zsh)"
