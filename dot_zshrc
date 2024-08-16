@@ -120,9 +120,6 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 zstyle ':autocomplete:*' fzf-completion yes
 
-# Aliases
-source ".zsh/aliases"
-
 # Shell integrations
 eval "$(zoxide init --cmd cd zsh)"
 
@@ -176,3 +173,6 @@ cleanbin(){
 autoload zmv
 
 ___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"; if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi
+
+# Aliases
+source "${HOME}/.zsh/aliases"
