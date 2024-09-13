@@ -153,6 +153,7 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
 loadgemini(){
 	export GEMINI_API_KEY=$(chezmoi secret keyring get --service gemini_api --user=user)
+	echo "Environment variable GEMINI_API_KEY set to value in secret manager"
 }
 
 # >>> conda initialize >>>
