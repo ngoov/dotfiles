@@ -151,6 +151,10 @@ export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
+loadgemini(){
+	export GEMINI_API_KEY=$(chezmoi secret keyring get --service gemini_api --user=user)
+}
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/Users/nils/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
