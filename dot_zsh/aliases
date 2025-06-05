@@ -20,6 +20,7 @@ alias k="kubectl"
 alias co="concurrently"
 alias cls="clear"
 alias lb="liquibase"
+alias ws="windsurf"
 
 # Shorter nvim
 # alias vi=nvim
