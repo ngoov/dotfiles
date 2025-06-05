@@ -1,0 +1,147 @@
+$schema: https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+console_title_template: " {{ .Folder }} {{if .Root}} :: Admin{{end}}"
+palette:
+  main-bg: "#24283b"
+  terminal-red: "#f7768e"
+  pistachio-green: "#9ece6a"
+  terminal-green: "#73daca"
+  terminal-yellow: "#e0af68"
+  terminal-blue: "#7aa2f7"
+  celeste-blue: "#b4f9f8"
+  light-sky-blue: "#7dcfff"
+  terminal-white: "#c0caf5"
+  white-blue: "#a9b1d6"
+  blue-bell: "#9aa5ce"
+  pastal-grey: "#cfc9c2"
+  terminal-magenta: "#bb9af7"
+  blue-black: "#565f89"
+  terminal-black: "#414868"
+  t-background: p:main-bg
+blocks:
+  - alignment: left
+    segments:
+      - type: text
+        style: plain
+        background: transparent
+        foreground: p:terminal-blue
+        template: "$ "
+      - type: session
+        style: plain
+        foreground: p:terminal
+        background: transparent
+        template: "{{ .UserName }}{{ if .Root }}<p:terminal-green>(root)</>{{ end }}@<p:celeste-blue>{{ .HostName }}</> "
+      - type: path
+        style: plain
+        foreground: p:terminal-magenta
+        properties:
+          style: agnoster_full
+        template: "<b>{{ .Path }}</b> "
+      - type: git
+        style: plain
+        foreground: p:light-sky-blue
+        foreground_templates:
+          - "{{ if or (.Working.Changed) (.Staging.Changed) }}p:terminal-red{{
+            end }}"
+          - "{{ if and (gt .Ahead 0) (gt .Behind 0)}}p:light-sky-blue {{ end }}"
+          - "{{ if gt .Ahead 0 }}p:terminal-blue{{ end }}"
+          - "{{ if gt .Behind 0 }}p:celeste-blue{{ end }}"
+        template: ({{ .HEAD}})
+        properties:
+          fetch_status: true
+          branch_icon: " "
+      - type: executiontime
+        style: plain
+        foreground: p:white-blue
+        template: " {{ .FormattedMs }} "
+        properties:
+          threshold: 500
+          style: austin
+          always_enabled: true
+      - type: status
+        style: plain
+        template: "{{ if eq .Code 0 }}<p:terminal-green>✓</>{{ else }}<p:terminal-red>𐄂 {{ reason .Code }}</>{{ end }}"
+        properties:
+          always_enabled: true
+    type: prompt
+  - alignment: right
+    overflow: hide
+    segments:
+      - type: node
+        style: plain
+        foreground: p:pistachio-green
+        template: " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}{{ if .Mismatch }} != <p:terminal-red>{{ .Expected }}(.npmrc)</>{{ end }} "
+        properties:
+          home_enabled: true
+          display_mode: context
+          cache: 24h
+      - type: svelte
+        style: plain
+        foreground: p:terminal-magenta
+        template: " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} "
+        properties:
+          home_enabled: true
+          display_mode: context
+          cache: 24h
+      - type: react
+        style: plain
+        foreground: p:terminal-blue
+        template: " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} "
+        properties:
+          home_enabled: true
+          display_mode: context
+          cache: 24h
+      - type: dotnet
+        style: plain
+        foreground: p:terminal-magenta
+        template: "  {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} {{ if .SDKVersion }}({{ .SDKVersion }}){{ end }} "
+        properties:
+          home_enabled: true
+          display_mode: context
+          cache: 24h
+          fetch_sdk_version: true
+      - type: php
+        style: plain
+        foreground: p:terminal-blue
+        template: " {{ .Full }} "
+      - type: python
+        style: plain
+        foreground: p:terminal-yellow
+        template:  {{ .Full }}
+      - type: julia
+        style: plain
+        foreground: p:terminal-magenta
+        template:  {{ .Full }}
+      - type: ruby
+        style: plain
+        foreground: p:terminal-red
+        template:  {{ .Full}}
+      - type: go
+        style: plain
+        foreground: p:light-sky-blue
+        template: ﳑ {{ .Full}}
+      - type: time
+        style: plain
+        foreground: p:white-blue
+        template: " {{ .CurrentDate | date .Format }} "
+        properties:
+          time_format: 15:04:05
+    type: prompt
+  - alignment: left
+    newline: true
+    segments:
+      - foreground: p:pistachio-green
+        style: plain
+        template: ">"
+        type: text
+    type: prompt
+secondary_prompt:
+  background: transparent
+  foreground: p:terminal-blue
+  template: "> "
+transient_prompt:
+  background: transparent
+  foreground: p:terminal-blue
+  template: "$ "
+final_space: true
+version: 3
+terminal_background: p:t-background
