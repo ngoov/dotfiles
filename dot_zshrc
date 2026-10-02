@@ -14,26 +14,23 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 
-# Load completions
-autoload -Uz compinit && compinit
-
 # Add in zsh plugins
 zinit light zsh-users/zsh-completions
+
+# Load completions after registering zsh-completions
+autoload -Uz compinit && compinit
+
 zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-syntax-highlighting
 zinit light MichaelAquilina/zsh-you-should-use
-# zinit light marlonrichert/zsh-autocomplete
 
 # Add in snippets
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
-zinit snippet OMZP::archlinux
-# zinit snippet OMZP::aws
-# zinit snippet OMZP::kubectl
 zinit load Dbz/kube-aliases
 zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
+zinit light zsh-users/zsh-syntax-highlighting
 
 
 zinit cdreplay -q
@@ -112,7 +109,6 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
-zstyle ':autocomplete:*' fzf-completion yes
 
 # Shell integrations
 eval "$(zoxide init --cmd cd zsh)"
@@ -123,10 +119,6 @@ eval "$(fzf --zsh)"
 eval "$(direnv hook zsh)"
 #fnm
 eval "$(fnm env --use-on-cd)"
-# --- FZF ---
-
-# Shell integration
-
 # pnpm
 export PNPM_HOME="/Users/nils/Library/pnpm"
 case ":$PATH:" in
@@ -134,14 +126,12 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
 # fnm
 export PATH="/Users/nils/Library/Application Support/fnm:$PATH"
 
 # Android studio
 export ANDROID_HOME=$HOME/Library/Android/sdk
-# export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
 # Add dotnet tools path
@@ -151,21 +141,6 @@ loadgemini(){
 	export GEMINI_API_KEY=$(chezmoi secret keyring get --service gemini_api --user=user)
 	echo "Environment variable GEMINI_API_KEY set to value in secret manager"
 }
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
 cleanbin(){
 	find . -iname "bin" -o -iname "obj" | xargs rm -rf
@@ -183,4 +158,3 @@ ___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"; if [ -f "${___MY_V
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/nils/.lmstudio/bin"
-export PATH="/Users/nils/.codeium/windsurf/bin:$PATH"

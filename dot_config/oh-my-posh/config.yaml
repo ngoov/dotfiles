@@ -99,10 +99,6 @@ blocks:
           display_mode: context
           cache: 24h
           fetch_sdk_version: true
-      - type: php
-        style: plain
-        foreground: p:terminal-blue
-        template: "  {{ .Full }} "
       - type: python
         style: plain
         foreground: p:terminal-yellow

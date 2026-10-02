@@ -17,10 +17,3 @@ alias pn="pnpm"
 alias py="python3"
 alias d="docker"
 alias k="kubectl"
-alias co="concurrently"
-alias lb="liquibase"
-alias ws="windsurf"
-
-# Shorter nvim
-# alias vi=nvim
-# alias vim=nvim
