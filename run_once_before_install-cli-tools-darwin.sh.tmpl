@@ -12,7 +12,6 @@ fi
 
 cli_formulae=(
   bat
-  bun
   caddy
   direnv
   eza
@@ -39,6 +38,15 @@ done
 
 if ((${#missing[@]})); then
   brew install "${missing[@]}"
+fi
+
+if ! brew list --formula --versions bun >/dev/null 2>&1 && ! command -v bun >/dev/null 2>&1; then
+  brew install bun
+fi
+
+if ! fnm default >/dev/null 2>&1; then
+  fnm install --lts
+  fnm default lts-latest
 fi
 
 if ! command -v dotnet >/dev/null 2>&1; then
