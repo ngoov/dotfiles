@@ -1,0 +1,49 @@
+#!/bin/bash
+set -euo pipefail
+
+if [[ "$(uname -s)" != "Darwin" ]]; then
+  exit 0
+fi
+
+if ! command -v brew >/dev/null 2>&1; then
+  echo "Homebrew is required before applying these dotfiles." >&2
+  exit 1
+fi
+
+cli_formulae=(
+  bat
+  bun
+  caddy
+  direnv
+  eza
+  fd
+  fnm
+  fzf
+  herdr
+  htop
+  oh-my-posh
+  opencode
+  pnpm
+  ruby
+  thefuck
+  uv
+  zoxide
+)
+
+missing=()
+for formula in "${cli_formulae[@]}"; do
+  if ! brew list --formula --versions "$formula" >/dev/null 2>&1; then
+    missing+=("$formula")
+  fi
+done
+
+if ((${#missing[@]})); then
+  brew install "${missing[@]}"
+fi
+
+if ! command -v dotnet >/dev/null 2>&1; then
+  installer="$(mktemp)"
+  trap 'rm -f "$installer"' EXIT
+  curl --fail --silent --show-error --location https://dot.net/v1/dotnet-install.sh --output "$installer"
+  bash "$installer" --channel LTS --install-dir "$HOME/.dotnet"
+fi

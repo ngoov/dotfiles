@@ -1,0 +1,43 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "build": {
+      "disable": true
+    },
+    "plan": {
+      "disable": true
+    },
+    "fast": {
+      "mode": "primary",
+      "description": "Fast/simple tasks: commit messages, docs, changelogs, small edits, quick tests",
+      "model": "azure/gpt-6-luna",
+      "reasoningEffort": "low",
+      "color": "success",
+      "steps": 5
+    },
+    "normal": {
+      "mode": "primary",
+      "description": "Default coding tasks: components/pages, Flutter screens, CRUD, forms, boilerplate",
+      "model": "azure/gpt-6-luna",
+      "reasoningEffort": "low",
+      "color": "secondary",
+      "steps": 30
+    },
+    "think": {
+      "mode": "primary",
+      "description": "Harder implementation: multi-file changes, refactors, debugging, integration work",
+      "model": "azure/gpt-6-luna",
+      "reasoningEffort": "medium",
+      "color": "warning",
+      "steps": 50
+    },
+    "architect": {
+      "mode": "primary",
+      "description": "Premium: architecture, security, PR review, final hardening pass",
+      "model": "azure/gpt-6-luna",
+      "reasoningEffort": "high",
+      "color": "error",
+      "steps": 100
+    }
+  }
+}
