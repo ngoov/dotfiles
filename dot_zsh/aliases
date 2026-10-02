@@ -18,7 +18,6 @@ alias py="python3"
 alias d="docker"
 alias k="kubectl"
 alias co="concurrently"
-alias cls="clear"
 alias lb="liquibase"
 alias ws="windsurf"
 

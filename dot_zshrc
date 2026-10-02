@@ -177,18 +177,10 @@ autoload zmv
 # Aliases
 source "${HOME}/.zsh/aliases"
 
-# Added by Windsurf
-export PATH="/Users/nils/.codeium/windsurf/bin:$PATH"
-
-# Added by Windsurf - Next
-export PATH="/Users/nils/.codeium/windsurf/bin:$PATH"
-
 # Default browser
 export BROWSER="brave-browser"
 ___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"; if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/nils/.lmstudio/bin"
-
-# Added by Windsurf - Next
 export PATH="/Users/nils/.codeium/windsurf/bin:$PATH"
