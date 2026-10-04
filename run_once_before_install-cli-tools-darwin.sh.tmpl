@@ -40,6 +40,10 @@ if ((${#missing[@]})); then
   brew install "${missing[@]}"
 fi
 
+if ! brew list --cask --versions git-credential-manager >/dev/null 2>&1; then
+  brew install --cask git-credential-manager
+fi
+
 if ! brew list --formula --versions bun >/dev/null 2>&1 && ! command -v bun >/dev/null 2>&1; then
   brew install bun
 fi
